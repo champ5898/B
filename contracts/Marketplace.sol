@@ -71,13 +71,15 @@ contract Marketplace is NFT, Stakable{
    }
     
    
-    function listItem(string calldata _name, uint _price, uint _quantity) external onlyStakers {
+    function listItem(string memory _name, uint _price, uint _quantity) external payable onlyStakers {
          productId++;
          Products.push(product(_name, _price, _quantity, payable(msg.sender)));
          if (_quantity>=1){
              currentStatus = status.Available;
              emit newProduct(productId, _name, _price, _quantity, msg.sender);
          }
+         else
+         revert();
           
     }  
    

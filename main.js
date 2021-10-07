@@ -1,11 +1,45 @@
 Moralis.initialize("o1P68RrKFrV57EziChYGwbH1ETwpN250qb9rAgK1");
-
 Moralis.serverURL = 'https://uvoj28qnh9dj.moralishost.com:2053/server'
 
+showPage = (id) => {
+    console.log('showpage: ' + id);
+    const aboutus = document.getElementById("aboutus");
+    const social = document.getElementById("social");
+    const docs = document.getElementById("docs");
+    const whitepaper = document.getElementById("whitepaper");
+    const home = document.getElementById("home");
+
+    hideElement(aboutus);
+    hideElement(social);
+    hideElement(docs);
+    hideElement(whitepaper);
+    hideElement(home);
+
+    switch (id) {
+        case 'aboutus':
+            showElement(aboutus);
+            break;
+        case 'social':
+            showElement(social);
+            break;
+        case 'docs':
+            showElement(docs);
+            break;
+        case 'whitepaper':
+            showElement(whitepaper);
+            break;
+        case 'home': // fallthrough..
+        default:
+            showElement(home);
+            break;
+    }
+}
+
 init = async() => {
+    console.log('init...');
+    showPage('home');
     hideElement(userInfo);
     hideElement(listItemForm);
-    hideElement(userStakeForm);
     window.web3 = await Moralis.Web3.enable();
     initUser();
 }
@@ -15,13 +49,11 @@ initUser = async()=>{
         hideElement(userConnectButton);
         showElement(userProfileButton);
         showElement(openListItemButton);
-        hideElement(userStakeForm);
     }
     else{
         showElement(userConnectButton);
         hideElement(userProfileButton);
         hideElement(openListItemButton);
-        hideElement(userStakeForm);
     }
 }
 
@@ -30,15 +62,14 @@ login = async () => {
         await Moralis.Web3.authenticate();
         initUser();
     } catch (error) {
-        alert(error);
+        alert('login: ' + error.code + '=' + error.message);
     }
 }
 
 logout = async () => {
     await Moralis.User.logOut();
-    hideElement(userInfo);
+    $('#userInfo').modal('hide');
     initUser();
-
 }
 
 openUserInfo = async () =>{
@@ -62,16 +93,16 @@ openUserInfo = async () =>{
         else{
             hideElement(userAvatarImg);
         }
-        const userAddress= user.get('address');
-        if(userAddress){
-            userAddressField.value= userAddress;
-            
+
+        const address = user.get('address');
+        if(address){
+            userAddressField.value=address;
         }
         else{
             userAddressField.value="";
         }
 
-        showElement(userInfo);
+        $('#userInfo').modal('show');
     }
     else{
         login();
@@ -79,37 +110,54 @@ openUserInfo = async () =>{
 }
 
 saveUserInfo = async () => {
-    user.set('email', userEmailField.value);
-    user.set('username', userUsernameField.value);
-    user.set('address', userAddressField.value);
+    try {
+        user.set('email', userEmailField.value);
+        user.set('username', userUsernameField.value);
+        user.set('address', userAddressField);
 
-    if(userAvatarFile.files.length>0){
-        const avatar =new Moralis.File("avatar.jpg", userAvatarFile.files[0]);
-        user.set('avatar', avatar);
+        if(userAvatarFile.files.length>0){
+            const avatar =new Moralis.File("avatar.jpg", userAvatarFile.files[0]);
+            user.set('avatar', avatar);
+        }
+        await user.save();
+        alert ("User info saved successfully!");
+        $('#userInfo').modal('hide');
+        //openUserInfo();
+    } catch (error) {
+        alert('Save: ' + error.code + '=' + error.message);
     }
-    await user.save();
-    alert ("User info saved successfully!");
-    openUserInfo();
 }
 
 userStake= async()=>{
-    if (stakeAmount.value<0.05){
+    user = await Moralis.User.current();
+    if(user){
+      $('#userStakeForm').modal('show');
+      if (stakeAmount.value<0.05){
         alert("Please stake more than or equal to 0.05 ether!");
         return;
-    }
+      }
 
-    //solidity and web3 integration
-    async function stake_Amount(){
-    let _amount= stakeAmount.value*Math.pow(10,18);
-    window.web3 = await Moralis.Web3.enable();
-    let contractInstance = new web3.eth.Contract(stake.abi, "0xeF37E296d3f58E35ED0c1B6959AF29fB2990F568")
-    contractInstance.methods.stake().send({from: ethereum.selectedAddress, value: _amount})
-    .on('receipt', function(receipt){
+      else{
+
+      //solidity and web3 integration
+      async function stake_Amount(){
+      let _amount= stakeAmount.value*Math.pow(10,18);
+      window.web3 = await Moralis.Web3.enable();$('#userStakeForm').modal('show');
+      let contractInstance = new web3.eth.Contract(stakeABI, "0xcF2E4550d68bF506Dd5E7B33073260eC3816D252")
+      contractInstance.methods.Stake().send({from: ethereum.selectedAddress, value: _amount})
+     .on('receipt', function(receipt){
         console.log(receipt);
         alert(receipt.events.Staked.returnValues);
-    })
-  }
-  stake_Amount();
+       })
+       }
+        stake_Amount();
+      }
+      
+    }
+
+    else{
+        login();
+    }
   
 }
 
@@ -123,56 +171,55 @@ listItem= async()=>{
         return;
     }
     
-    const itemFile = new Moralis.File("itemFile.jpg", listItemFile.files[0])
-    await itemFile.saveIPFS();
+const itemFile = new Moralis.File("itemFile.jpg", listItemFile.files[0])
+await itemFile.saveIPFS();
 
-    const itemFilePath= itemFile.ipfs();
-    const itemFileHash=itemFile.hash();
+const itemFilePath= itemFile.ipfs();
+const itemFileHash=itemFile.hash();
 
-    const metadata={
-     name: listItemNameField.value,
-     description: listItemDescriptionField.value,
-     price: listItemPriceField.value,
-     itemFilePath: itemFilePath,
-     itemFileHash: itemFileHash
-    };
+const metadata={
+    name: listItemNameField.value,
+    price: listItemPriceField.value,
+    description: listItemDescriptionField.value,
+    itemFilePath: itemFilePath,
+    itemFileHash: itemFileHash
+};
 
 
-  const itemFileMetadata = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
-  await itemFileMetadata.saveIPFS();
+const itemFileMetadata = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
+await itemFileMetadata.saveIPFS();
 
-  const itemFileMetadataPath= itemFileMetadata.ipfs();
-  const itemFileMetadataHash= itemFileMetadata.hash();
+const itemFileMetadataPath= itemFileMetadata.ipfs();
+const itemFileMetadataHash= itemFileMetadata.hash();
 
-  const Item = Moralis.Object.extend("Item");
+const Item = Moralis.Object.extend("Item");
 
-  //Create a new instance of that class.
-  const item =new Item();
-  item.set('name', listItemNameField.value);
-  item.set('description', listItemDescriptionField.value);
-  item.set('price', listItemPriceField.value);
-  item.set('itemFilePath', itemFilePath);
-  item.set('itemFileHash', itemFileHash);
-  item.set('metadataFilePath', itemFileMetadataPath);
-  item.set('metadataFileHash', itemFileMetadataHash);
-  await item.save();
-  console.log(item);
+//Create a new instance of that class.
+const item =new Item();
+item.set('name', listItemNameField.value);
+item.set('description', listItemDescriptionField.value);
+item.set('price', listItemPriceField.value);
+item.set('itemFilePath', itemFilePath);
+item.set('itemFileHash', itemFileHash);
+item.set('metadataFilePath', itemFileMetadataPath);
+item.set('metadataFileHash', itemFileMetadataHash);
+await item.save();
+console.log(item);
 
-  //solidity and web3 integration
-  async function list_Item(){
+//solidity and web3 integration
+async function list_Item(){
     let _name= listItemNameField.value;
     let _price= listItemPriceField.value;
     let _quantity= listItemQuantityField.value;
     window.web3 = await Moralis.Web3.enable();
-    let contractInstance = new web3.eth.Contract(window.abi, "0xcdEc06999de5EEF40DA3542D8ccc29062bbe037b")
-    contractInstance.methods.listItem(_name, _price, _quantity).send({from: ethereum.selectedAddress})
+    let contractInstance = new web3.eth.Contract(window.abi, "0xcF2E4550d68bF506Dd5E7B33073260eC3816D252")
+    contractInstance.methods.listItem(_name, _price, _quantity).send({from: ethereum.selectedAddress, value:0})
     .on('receipt', function(receipt){
         console.log(receipt);
         alert(receipt.events.newProduct.returnValues);
     })
   }
   list_Item();
-  
 }
 
 hideElement = (element) => element.style.display = "none";
@@ -189,17 +236,17 @@ const openListItemButton= document.getElementById("btnOpenListItem");
 openListItemButton.onclick = () =>showElement(listItemForm);
 
 const openStakeFormButton= document.getElementById("btnStakeForm");
-openStakeFormButton.onclick = () =>showElement(userStakeForm);
+openStakeFormButton.onclick = userStake;
 
 //User Profile
 const userInfo= document.getElementById("userInfo");
 const userUsernameField= document.getElementById("txtUsername");
 const userEmailField = document.getElementById("txtEmail");
-const userAddressField =document.getElementById("txtAddress")
+const userAddressField = document.getElementById("txtAddress");
 const userAvatarImg = document.getElementById("imgAvatar");
 const userAvatarFile= document.getElementById("fileAvatar");
 
-document.getElementById("btnCloseUserInfo").onclick = () => hideElement(userInfo);
+document.getElementById("btnCloseUserInfo").onclick = () => { $('#userInfo').modal('hide'); }
 document.getElementById("btnLogout").onclick=logout; 
 document.getElementById("btnSaveUserInfo").onclick=saveUserInfo; 
 
@@ -210,7 +257,7 @@ document.getElementById("btnCloseStakeForm").onclick=() => hideElement(userStake
 document.getElementById("btnStakeConfirm").onclick= userStake; 
 
 //List Item
-const listItemForm= document.getElementById("listItemForm");
+const listItemForm= document.getElementById("listItem");
 
 const listItemNameField= document.getElementById("txtListItemName");
 const listItemDescriptionField= document.getElementById("txtListItemDescription");
@@ -237,11 +284,13 @@ if (burger) {
     });
 }
 
+document.getElementById("btnHome").onclick = () => { showPage('home'); }
+document.getElementById("btnAboutUs").onclick = () => { showPage('aboutus'); }
+document.getElementById("btnSocial").onclick = () => { showPage('social'); }
+document.getElementById("btnDocs").onclick = () => { showPage('docs'); }
+//document.getElementById("btnWhitepaper").onclick = () => { showPage('whitepaper'); }
+
 init();
-
-
-
-
 
   function on() {
     document.getElementById("overlay").style.display = "block";
