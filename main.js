@@ -40,6 +40,8 @@ init = async() => {
     showPage('home');
     hideElement(userInfo);
     hideElement(listItemForm);
+    hideElement(listedItems);
+    hideElement(buyItemForm);
     window.web3 = await Moralis.Web3.enable();
     initUser();
 }
@@ -57,11 +59,34 @@ initUser = async()=>{
     }
 }
 
+function addTable(tableId, data){
+    console.log(data);
+    let tableRow = document.createElement('tr');
+    data.forEach(element=>{
+        let newColumn = document.createElement('td');
+        newColumn.innerHTML = element;
+        tableRow.appendChild(newColumn);
+    });
+    document.getElementById(tableId).appendChild(tableRow);
+}
+
 login = async () => {
     try {
         await Moralis.Web3.authenticate();
         initUser();
-    } catch (error) {
+
+        const listedProduct= await getItems();
+        //listedProduct.equalTo("productId",2);
+        const results = await listedProduct.find();
+        console.log(results);
+
+        //console.log(listedProduct);
+        listedProduct.forEach((row) =>{
+        addTable("listed_product", [row.productId, row.name, row.price, row.quantity, row.seller])
+        })
+        
+    }
+    catch (error) {
         alert('login: ' + error.code + '=' + error.message);
     }
 }
@@ -221,6 +246,60 @@ async function list_Item(){
   }
   list_Item();
 }
+ //Moralis Cloud
+ getItems= async()=>{
+    const products = Moralis.Object.extend("listedProduct");
+    const query= new Moralis.Query(products);
+    const Products=  query.find();
+    console.log(Products);
+    return Products;
+//let Items = await Moralis.Cloud.run("Items",{});
+   
+    }
+   
+
+
+buyItem= async()=>{
+    if (buyItemQuantity.value==0){
+        alert("Please give a correct quantity!");
+        return;
+    }
+    else if(buyItemProductId.value==0){
+        alert("Please give the correct ProductId!");
+        return;
+    }
+
+const metadata={
+    productId: buyItemProductId.value,
+    quantity: buyItemQuantity.value,
+    deliveryAddress: buyItemDeliveryAddress.value
+};
+
+const Buy = Moralis.Object.extend("Buy");
+
+//Create a new instance of that class.
+const buy =new Buy();
+buy.set('productId', buyItemProductId.value);
+buy.set('quantity', buyItemQuantity.value);
+buy.set('deliveryAddress', buyItemDeliveryAddress.value);
+await buy.save();
+console.log(buy);
+
+//solidity and web3 integration
+async function buy_Item(){
+    let _productId= buyItemProductId.value;
+    let _quantity= buyItemQuantity.value;
+    let _price= buyItemPrice.value;
+    window.web3 = await Moralis.Web3.enable();
+    let contractInstance = new web3.eth.Contract(window.abi, "0xcF2E4550d68bF506Dd5E7B33073260eC3816D252")
+    contractInstance.methods.buy(_productId, _quantity).send({from: ethereum.selectedAddress, value: _price*_quantity})
+    .on('receipt', function(receipt){
+        console.log(receipt);
+        alert(receipt.events.newOrder.returnValues);
+    })
+  }
+  buy_Item();
+}
 
 hideElement = (element) => element.style.display = "none";
 showElement = (element) => element.style.display = "block";
@@ -237,6 +316,12 @@ openListItemButton.onclick = () =>showElement(listItemForm);
 
 const openStakeFormButton= document.getElementById("btnStakeForm");
 openStakeFormButton.onclick = userStake;
+
+const openListedItemButton= document.getElementById("btnOpenListedItem");
+openListedItemButton.onclick = getItems;
+
+const openBuyItemButton= document.getElementById("btnOpenBuyItem");
+openBuyItemButton.onclick = () => showElement(buyItemForm);
 
 //User Profile
 const userInfo= document.getElementById("userInfo");
@@ -268,6 +353,19 @@ const listItemStatusField= document.getElementById("selectListItemStatus");
 const listItemFile= document.getElementById("fileListItem");
 document.getElementById("btnCloseListItem").onclick= () => hideElement(listItemForm); 
 document.getElementById("btnListItem").onclick= listItem; 
+
+//Listed Items
+const listedItems =document.getElementById("listedItems");
+document.getElementById("btnCloseListedItem").onclick= () => hideElement(listedItems); 
+
+//Buy Items
+const buyItemForm= document.getElementById("buyItemForm");
+const buyItemQuantity= document.getElementById("numBuyItemQuantity");
+const buyItemPrice= document.getElementById("numBuyItemPrice");
+const buyItemProductId= document.getElementById("numProductId");
+const buyItemDeliveryAddress= document.getElementById("txtDeliveryAddress");
+document.getElementById("btnBuyItem").onclick= buyItem;
+document.getElementById("btnCloseBuyItem").onclick= () => hideElement(buyItemForm);
 
 // Burger menu 
 

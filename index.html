@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <link rel="stylesheet" href="main.css">
     <script type="text/javascript" src="abi.js"></script>
-    <title>BuyOnChain</title>
+    <title">BuyOnChain</title>
 </head>
 <body>
     <header>
@@ -72,7 +72,7 @@
         </nav>
    
         <div class="title">
-            <h1>Buy On Chain</h1>
+            <h1 style="margin-left: 120px;">Buy On Chain</h1>
         </div>
 
         <div class="logo">
@@ -83,12 +83,14 @@
     <section class="main">
         <div id="home">
             <div class="marketplace">
-                <h2>First<br>decentralized<br>marketplace</h2>
-                <img src="../logo/buc.svg" alt="logo">
+                <h2 style="margin-left: 60px;">First<br>decentralized<br>marketplace</h2>
+                <img src="../logo/buc.svg" alt="svg">
             </div>
                 
             <button class="btn" id="btnOpenListItem">
+                <text style="size: 200%;" >List Product</text> <br>
                 <span class="material-icons-outlined">add_circle_outline</span>
+               
             </button>
                 
             <div id="listItem">
@@ -142,7 +144,75 @@
                 </div>
             </div>
         </div>
+            
+        <button class="btn" id="btnOpenListedItem">
+            <span >Browse products</span>
+        </button>
+            
+        <div id="listedItems" style="color: aliceblue;">
+            <h4 style="color: aliceblue;">Listed Items</h4>
+            
+            
+                <div class="row" id ="statistics">
+                  <div class="col-md-6">
+                      
+                      <table class="table" id="listed_product">
+                          <thread>
+                              <tr>
+                                  <th scope="col">Product Id</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Quantity</th>
+                                  <th scope="col">Seller Address</th>
+                              </tr>
+                          </thread>
+                      </table>
 
+                  </div>
+                                      
+                </div>
+            
+            
+            <div class="listed_btns">
+                <button class="btn" id="btnCloseListedItem">
+                    <span class="material-icons-outlined">
+                    close
+                    </span>
+                </button>
+            
+                   
+            </div>
+        </div>
+    </div>
+        
+    <button class="btn" id="btnOpenBuyItem">
+        <span >Place Order</span>
+    </button>
+    <div id="buyItemForm">
+        <h4 style="color: aliceblue;">Buy Product</h4>
+        
+        <form action="">
+            <div class="buy-form">
+                <input type="number" min="1" step="1" id = "numProductId" placeholder="Enter ProductId" required> 
+                <input type="number" min="1" step="1" id = "numBuyItemQuantity" placeholder="Enter Quantity" required>
+                <input type="number" min="1" step="1" id = "numBuyItemPrice" placeholder="Enter Price" required>
+                <textarea id="txtDeliveryAddress" cols="30" rows="5" placeholder="Enter Delivery Address"></textarea>
+            </div>
+        </form>
+                
+            <button class="btn" id="btnCloseBuyItem">
+                <span class="material-icons-outlined">
+                cancel
+                </span>
+            </button>
+        
+            <button class="btn" id="btnBuyItem">
+               Buy
+            </button>        
+        </div>
+    </div>
+   </div>
+    
         <div id="aboutus">
             <div class="marketplace">
                 <h2>About us</h2>

@@ -84,7 +84,7 @@ contract Marketplace is NFT, Stakable{
     }  
    
    function buy(uint _productId, uint _quantity) external payable notSellor(_productId) cost(Products[_productId].price, _quantity) onlyStakers{
-       require (currentStatus== status.Available);
+       require (currentStatus== status.Available && _quantity<= Products[_productId].quantity, "This quantity of product is not available");
        Products[_productId].quantity-=_quantity;
        OrderStatus= orderStatus.OrderPlaced;
        uint _totalCost= Products[_productId].price*_quantity;
