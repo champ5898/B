@@ -1,7 +1,7 @@
 ﻿# BuyOnChain
 <img src="logo/Buy.gif" width="100">
 
-https://buyonchain.live/
+https://dev.buyonchain.live/
 
 Procedure:
    
@@ -14,6 +14,8 @@ Procedure:
 4)Only the buyer can confirm after the product gets delivered. The money will then go from the contract to seller.
 
 5)Two unique NFTs will get minted after successful transaction. One will go to the buyer and the other to the seller. These NFTs will be used as a proof of purchase and sell.
+
+https://buyonchain.netlify.app/
 
 Whitepaper: https://blog.buyonchain.live/
 
