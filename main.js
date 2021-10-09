@@ -1,6 +1,38 @@
 Moralis.initialize("o1P68RrKFrV57EziChYGwbH1ETwpN250qb9rAgK1");
 Moralis.serverURL = 'https://uvoj28qnh9dj.moralishost.com:2053/server'
 
+$('.slider-nav').slick({
+    // slidesToShow: 12,
+    dots: false,
+    infinite: true,
+    focusOnSelect: true,
+    prevArrow: false,
+    nextArrow: false,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 12.4,
+        slidesToScroll: 1,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 6.6,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 413,
+      settings: {
+        slidesToShow: 2.2,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
 showPage = (id) => {
     console.log('showpage: ' + id);
     const aboutus = document.getElementById("aboutus");
@@ -8,6 +40,11 @@ showPage = (id) => {
     const docs = document.getElementById("docs");
     const whitepaper = document.getElementById("whitepaper");
     const home = document.getElementById("home");
+
+
+
+
+
 
     hideElement(aboutus);
     hideElement(social);

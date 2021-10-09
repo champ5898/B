@@ -4,37 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Display">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="main.css">
     <script type="text/javascript" src="abi.js"></script>
     <title">BuyOnChain</title>
+
 </head>
+
 <body>
     <header>
         <nav role="navigation">
             <div id="menuToggle">
-                <!--
-                A fake / hidden checkbox is used as click reciever,
-                so you can use the :checked selector on it.
-                -->
                 <input type="checkbox" />
-                
-                <!--
-                Some spans to act as a hamburger.
-                
-                They are acting like a real hamburger,
-                not that McDonalds stuff.
-                -->
                 <span></span>
                 <span></span>
                 <span></span>
 
-                <!--
-                Too bad the menu has to be inside of the button
-                but hey, it's pure CSS magic.
-                -->
                 <ul id="menu">
 
                     <div class="main-btn">
@@ -72,27 +60,37 @@
         </nav>
    
         <div class="title">
-            <h1 style="margin-left: 120px;">Buy On Chain</h1>
+            <h1>Buy On Chain</h1>
         </div>
 
         <div class="logo">
-            <a href="index.html"><img src="../logo/on.png"></a>
+            <a href="index.html"><img src="../logo/logo.png" width="120"></a>
         </div>
     </header>
 
     <section class="main">
         <div id="home">
-            <div class="marketplace">
-                <h2 style="margin-left: 60px;">First<br>decentralized<br>marketplace</h2>
-                <img src="../logo/buc.svg" alt="svg">
+            <div class="home_title">
+            <h2>First decentralized marketplace</h2>
             </div>
-                
-            <button class="btn" id="btnOpenListItem">
+            <div class="bg_image">
+            <img src="../logo/buc.svg" alt="logo">
+        </div>
+
+    </div>
+
+
+            <!-- <button class="btn" id="btnOpenListItem">
                 <text style="size: 200%;" >List Product</text> <br>
                 <span class="material-icons-outlined">add_circle_outline</span>
                
+            </button> -->
+
+            <button class="btn" id="btnOpenListItem">
+                <span class="material-icons-outlined">add_circle_outline</span>
+                Add product
             </button>
-                
+
             <div id="listItem">
                 <h4>List Item</h4>
                 
@@ -105,7 +103,6 @@
                     
                         <div class="item_data">
                             <div id="item_status">
-                                <!-- <label for="selectListItemStatus">Status</label> -->
                                 <select id="selectListItemStatus">
                                     <option value="0">Available</option>
                                     <option value="1">Out of Stock</option>
@@ -113,7 +110,6 @@
                             </div>
                 
                             <div id="item_type">
-                                <!-- <label for="selectListItemStatus">Status</label> -->
                                 <select id="selectListItemType">
                                     <option value="0">Returnable and Replaceable</option>
                                     <option value="1">Replaceable but not Returnable</option>
@@ -143,12 +139,14 @@
                     </button>        
                 </div>
             </div>
-        </div>
             
-        <button class="btn" id="btnOpenListedItem">
-            <span >Browse products</span>
-        </button>
-            
+            <button class="btn" id="btnOpenListedItem">
+                <span class="material-icons-outlined">
+                    image_search
+                    </span>
+                Browse products
+            </button>
+
         <div id="listedItems" style="color: aliceblue;">
             <h4 style="color: aliceblue;">Listed Items</h4>
             
@@ -172,22 +170,25 @@
                                       
                 </div>
             
-            
+             
             <div class="listed_btns">
                 <button class="btn" id="btnCloseListedItem">
                     <span class="material-icons-outlined">
                     close
                     </span>
                 </button>
-            
-                   
-            </div>
+              
+            </div> 
+
         </div>
     </div>
         
     <button class="btn" id="btnOpenBuyItem">
-        <span >Place Order</span>
+        <span class="material-icons-outlined">gavel</span>
+        Place Order
     </button>
+
+
     <div id="buyItemForm">
         <h4 style="color: aliceblue;">Buy Product</h4>
         
@@ -207,13 +208,14 @@
             </button>
         
             <button class="btn" id="btnBuyItem">
+                <span class="material-icons-outlined">done</span>
                Buy
             </button>        
         </div>
     </div>
    </div>
     
-        <div id="aboutus">
+        <!-- <div id="aboutus">
             <div class="marketplace">
                 <h2>About us</h2>
                 About us content here..
@@ -236,7 +238,7 @@
 
         <div id="whitepaper">
             <iframe src="https://blog.buyonchain.live"><a href="https://blog.buyonchain.live">Open Whitepaper</a></iframe>
-        </div>
+        </div> -->
     </section>
 
     <div class="hidden">
@@ -309,14 +311,90 @@
 
 
 
-    <section class="scroll-two">
-    </section>
+
+        <section class="scroll" id="scroll-two">
+            <div class="categories">
+
+            <div class="slider slider-nav">
+
+                <div class="cat_card">
+                    <a href="https://github.com"><img src="../icons/github.svg" alt="github"><h6>CategoryName</h6></a>
+                </div>
+
+                <div class="cat_card">
+                    <a href="https://discord.com"><img src="../icons/discord.svg" alt="github">
+                        <h6>CategoryName</h6>
+                    </a>
+                </div>
+
+                <div class="cat_card"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://github.com"><img src="../icons/github.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://discord.com"><img src="../icons/discord.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://github.com"><img src="../icons/github.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://discord.com"><img src="../icons/discord.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://github.com"><img src="../icons/github.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://discord.com"><img src="../icons/discord.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="github"><h6>CategoryName</h6></a></div>
+                <div class="cat_card"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="github"><h6>CategoryName</h6></a></div>
+                
+            </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <div class="wrapper">
+
+        <section class="scroll" id="scroll-three">
+            <div class="banner" id="banner_one">
+                <div class="banner_desc">
+                    use escrow
+                <span>Buy nft</span>
+            </div>
+
+                <button class="learn-more_btn">
+                    Learn more
+                </button>
+                <img src="./icons/Trophy.png" width="105" alt="">
+            </div>
+
+            <div class="banner" id="banner_two">
+                    <div class="banner_desc">
+                        Staking
+                    <span>BuyOnChain Token</span>
+                    </div>
+                    <button class="learn-more_btn">
+                        Learn more
+                    </button>
+                    <img src="./icons/Savings.png" width="85" alt="">
+
+            </div>
+        </section>
+        </div>
+
+    <footer>
+        <div class="social">
+            <div class="twitter"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="twitter"></a></div>
+            <div class="facebook"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="facebook"></a></div>
+            <div class="discord"><a href="https://discord.com"><img src="../icons/discord.svg" alt="discord"></a></div>
+            <div class="github"><a href="https://github.com"><img src="../icons/github.svg" alt="github"></a></div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="main.js"></script>
+
 </body>
 </html>
