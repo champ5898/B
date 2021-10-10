@@ -586,7 +586,7 @@ form {
 }
   .title h1 {
     padding: 0 15px;
-    font-size: 32px;
+    font-size: 21px;
     text-align: center;
     margin-right: -45px;
     letter-spacing: 4.5px;
@@ -637,7 +637,6 @@ form {
     display: flex ;
     justify-content: center;
     flex-direction: column;
-    width: 600px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -773,6 +772,8 @@ form section option, ::placeholder  {
     width: 100%;
     bottom: 0;
     background: transparent;
+    z-index: -111111;
+    position: fixed;
   }
   .social {
     color: #f5f5f5;
@@ -1020,6 +1021,9 @@ form section option, ::placeholder  {
     color: #6C63FF;
     font-size: 16px;
     font-weight: 500;
+  }
+  #listItem {
+    width: 600px;
   }
   .bg_image {
     display: flex;
