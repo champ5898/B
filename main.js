@@ -2,9 +2,8 @@ Moralis.initialize("o1P68RrKFrV57EziChYGwbH1ETwpN250qb9rAgK1");
 Moralis.serverURL = 'https://uvoj28qnh9dj.moralishost.com:2053/server'
 
 $('.slider-nav').slick({
-    // slidesToShow: 12,
     dots: false,
-    infinite: true,
+    infinite: false,
     focusOnSelect: true,
     prevArrow: false,
     nextArrow: false,
