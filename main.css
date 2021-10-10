@@ -6,13 +6,10 @@
   }
   body {
     background: rgb(15,18,48);
-    /* background: -moz-linear-gradient(180deg, rgba(15,18,48,1) 0%, rgba(108,99,255,1) 100%); */
-    /* background: -webkit-linear-gradient(180deg, rgba(15,18,48,1) 0%, rgba(108,99,255,1) 100%); */
-    /* background: linear-gradient(180deg, rgba(15,18,48,1) 0%, rgba(108,99,255,1) 100%); */
     background: #0f1230;
-    /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0f1230",endColorstr="#6c63ff",GradientType=1); */
-      box-sizing: border-box;
-      overflow-x: hidden;
+    object-fit: fill;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6{
       color: #161515e3;
@@ -68,10 +65,6 @@
     
     -webkit-touch-callout: none;
   }
-  
-  /*
-   * Just a quick hamburger
-   */
   #menuToggle span
   {
     display: block;
@@ -358,6 +351,11 @@
       margin: 10px;
       position: absolute;
   }
+  #float-right {
+      right: 15px;
+      float: right;
+      left: unset;
+  }
   .banner img {
     width: 120px;
     max-width: 100%;
@@ -528,7 +526,7 @@
     color: #f5f5f5;
     text-align: left;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin: auto 0;
     padding: 50px 10px;
   }
@@ -537,6 +535,7 @@
     text-align: left;
     display: flex;
     margin: auto 0;
+    font-size: 35px;
     padding: 50px 10px;
   }
   
@@ -934,14 +933,30 @@ form section option, ::placeholder  {
   .bg_image {
     display: flex;
 }
-
+.home_title h2 {
+  color: #f5f5f5;
+  text-align: left;
+  display: flex;
+  margin: auto 0;
+  font-size: 50px;
+  padding: 50px 10px;
+}
 .bg_image img {
   width: 100vw;
+  height: 100vh;
   max-width: 100%;
   max-height: 100%;
   display: block;
 }
   }
+  @media screen and (min-width: 980px) {
+  #banner_one {
+    left: 200px;
+  } 
+  #banner_two {
+    right: 200px;
+  }
+}
 
 @-webkit-keyframes gradient {
   0% {
