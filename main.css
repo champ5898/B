@@ -950,12 +950,12 @@ form section option, ::placeholder  {
 }
   }
   @media screen and (min-width: 980px) {
-  #banner_one {
+  /* #banner_one {
     left: 200px;
   } 
   #banner_two {
     right: 200px;
-  }
+  } */
 }
 
 @-webkit-keyframes gradient {
