@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "BuyOnChain",
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

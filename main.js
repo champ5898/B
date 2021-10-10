@@ -32,6 +32,7 @@ $('.slider-nav').slick({
     }
   ]
 });
+
 showPage = (id) => {
     console.log('showpage: ' + id);
     const aboutus = document.getElementById("aboutus");
@@ -39,11 +40,6 @@ showPage = (id) => {
     const docs = document.getElementById("docs");
     const whitepaper = document.getElementById("whitepaper");
     const home = document.getElementById("home");
-
-
-
-
-
 
     hideElement(aboutus);
     hideElement(social);

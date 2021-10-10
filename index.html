@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Display">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="logo">
-            <a href="index.html"><img src="../logo/logo.png" width="120"></a>
+            <a href="index.html"><img src="../logo/on.png" width="120"></a>
         </div>
     </header>
 
@@ -76,20 +76,13 @@
             <div class="bg_image">
             <img src="../logo/buc.svg" alt="logo">
         </div>
+        </div>
 
-    </div>
-
-
-            <!-- <button class="btn" id="btnOpenListItem">
-                <text style="size: 200%;" >List Product</text> <br>
-                <span class="material-icons-outlined">add_circle_outline</span>
-               
-            </button> -->
-
-            <button class="btn btn_rs" id="btnOpenListItem">
+            <a href="#listItem"><button class="btn btn_rs"  id="btnOpenListItem">
                 <span class="material-icons-outlined">add_circle_outline</span>
                 Add product
             </button>
+            </a>
 
             <div id="listItem">
                 <h4>List Item</h4>
@@ -140,12 +133,13 @@
                 </div>
             </div>
             
-            <button class="btn btn_rs" id="btnOpenListedItem">
+            <a href="#listedItems"><button class="btn btn_rs" id="btnOpenListedItem">
                 <span class="material-icons-outlined">
                     image_search
                     </span>
                 Browse products
             </button>
+        </a>
 
         <div id="listedItems" style="color: aliceblue;">
             <h4 style="color: aliceblue;">Listed Items</h4>
@@ -183,11 +177,11 @@
         </div>
     </div>
         
-    <button class="btn btn_rs" id="btnOpenBuyItem">
+    <a href="#buyItemForm"><button class="btn btn_rs" id="btnOpenBuyItem">
         <span class="material-icons-outlined">gavel</span>
         Place Order
     </button>
-
+</a>
 
     <div id="buyItemForm">
         <h4 style="color: aliceblue;">Buy Product</h4>
@@ -201,6 +195,7 @@
             </div>
         </form>
                 
+        <div class="listed_btns">    
             <button class="btn" id="btnCloseBuyItem">
                 <span class="material-icons-outlined">
                 cancel
@@ -210,35 +205,13 @@
             <button class="btn" id="btnBuyItem">
                 <span class="material-icons-outlined">done</span>
                Buy
-            </button>        
+            </button>   
+            
+        </div>
         </div>
     </div>
    </div>
     
-        <!-- <div id="aboutus">
-            <div class="marketplace">
-                <h2>About us</h2>
-                About us content here..
-            </div>
-        </div>
-
-        <div id="social">
-            <div class="marketplace">
-                <h2>Social</h2>
-                Social content here..
-            </div>
-        </div>
-
-        <div id="docs">
-            <div class="marketplace">
-                <h2>Docs</h2>
-                Docs content here..
-            </div>
-        </div>
-
-        <div id="whitepaper">
-            <iframe src="https://blog.buyonchain.live"><a href="https://blog.buyonchain.live">Open Whitepaper</a></iframe>
-        </div> -->
     </section>
 
     <div class="hidden">
@@ -261,8 +234,8 @@
                         <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label for="txtAddress">Enter residential address</label>
-                        <textarea id="txtAddress" cols="30" rows="5"  placeholder="Enter residential address"></textarea>
+                        <label for="txtAddress">Enter address</label>
+                        <textarea id="txtAddress" cols="30" rows="5"  placeholder="Enter address"></textarea>
                     </div>
                     <img width="50" height="50" src="" id="imgAvatar" alt="">
                     <div class="form-group">
@@ -310,7 +283,7 @@
     </div>
 
 
-
+<!-- 
 
         <section class="scroll" id="scroll-two">
             <div class="categories">
@@ -377,20 +350,20 @@
 
             </div>
         </section>
-        </div>
+        </div> -->
 
     <footer class="footer">
         <div class="social">
-            <div class="twitter"><a href="https://twitter.com"><img src="../icons/twitter.svg" alt="twitter"></a></div>
+            <div class="twitter"><a href="https://twitter.com/BuyOnchain"><img src="../icons/twitter.svg" alt="twitter"></a></div>
             <div class="facebook"><a href="https://facebook.com"><img src="../icons/facebook.svg" alt="facebook"></a></div>
             <div class="discord"><a href="https://discord.com"><img src="../icons/discord.svg" alt="discord"></a></div>
-            <div class="github"><a href="https://github.com"><img src="../icons/github.svg" alt="github"></a></div>
+            <div class="github"><a href="https://github.com/champ5898/BuyOnChain"><img src="../icons/github.svg" alt="github"></a></div>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

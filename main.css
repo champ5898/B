@@ -8,6 +8,7 @@
     background: rgb(15,18,48);
     background: #0f1230;
     object-fit: fill;
+    height: 100vh;
     box-sizing: border-box;
     overflow-x: hidden;
   }
@@ -197,6 +198,95 @@
   .main-btn {
     float: left;
   }
+  .modal-header h5 {
+    color: #f5f5f5;
+  }
+  .form-group {
+    display: grid;
+  }
+  .form-group label {
+    color: #f5f5f5;
+  }
+  .list-form {
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin: auto 0;
+    justify-content: center;
+  } 
+  .form-control {
+    background: rgba(18, 21, 56, 1);
+    box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
+    color: #f5f5f5;
+  }
+  .form-group input {
+    font-size: 20px;
+    border-radius: 44px; 
+    display: flex;
+    justify-content: center;
+    border: transparent;
+    text-align: center;
+
+  }
+  .form-group textarea {
+    font-size: 14px;
+    border: transparent;
+    padding: 20px;
+    text-align: left;
+    background: rgba(18, 21, 56, 1);
+    box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
+    color: #f5f5f5;
+    backdrop-filter: blur(28px);
+    border-radius: 44px;
+}
+.form-group ::placeholder  {
+  background: transparent;
+  color:#f5f5f5;
+  text-align: left;
+  font-size: 16px;
+}
+form {
+  display: flex;
+  justify-content: center;
+}
+.modal-content {
+  background: rgba(18, 21, 56, 0.92);
+  box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
+  /* backdrop-filter: blur(28px); */
+  border-radius: 44px;  
+}
+.modal-header {
+  border-bottom: 1px solid transparent !important;
+}
+.modal-footer {
+  border-top: 1px solid transparent !important;
+}
+#txtAddProductName {
+  background: transparent;
+}
+.form-group select {
+    font-size: 18px;
+    border-radius: 44px;   
+    border: transparent;
+    text-align: center;
+    background: rgba(18, 21, 56, 1);
+    box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
+    color: #f5f5f5;
+  }
+  .form-group label {
+    border-radius: 44px;   
+    border: transparent;
+    text-align: center;
+    color: #f5f5f5;
+  }
+  .listed_btns {
+    display: flex;
+    justify-content: center;
+  }
+  #statistics {
+    justify-content: center;
+  }
   .wrapper {
     margin: 30vh 7vw;
     display: flex;
@@ -246,9 +336,9 @@
     font-weight: 500;
     z-index: 99999;
   }
-  .hidden {
+  /* .hidden {
     display: none;
-  }
+  } */
   .cat_card a {
     text-decoration: none;
   }
@@ -358,8 +448,7 @@
   }
   .banner img {
     width: 120px;
-    max-width: 100%;
-    max-height: 100%;
+    /* height: 160px; */
     display: block;
     float: right;
   }
@@ -411,7 +500,7 @@
     #btnOpenBuyItem {
       float: right;
       position: fixed;
-      bottom: 25px;
+      bottom: 10vh;
       right: 20px;
       text-align: center;
       border-radius: 44px;
@@ -433,7 +522,7 @@
     #btnOpenListedItem {
     float: right;
     position: fixed;
-    bottom: 70px;
+    bottom: 25vh;
     right: 20px;
     text-align: center;
     border-radius: 44px;
@@ -455,7 +544,7 @@
   #btnOpenListItem {
     float: right;
     position: fixed;
-    bottom: 120px;
+    bottom: 40vh;
     right: 20px;
     text-align: center;
     border-radius: 44px;
@@ -488,7 +577,7 @@
     top: 0;
     width: 100%;
     z-index: 50;
-    background-color: #0f1230;
+    background-color: #6C63FF;
     justify-content: space-between;
     align-items: center;
 }
@@ -743,16 +832,18 @@ form section option, ::placeholder  {
   form textarea {
     font-size: 14px;
     border: transparent;
+    padding: 20px;
+    margin: 10px 0;
     text-align: left;
     background: rgba(18, 21, 56, 1);
     box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
-    color: #f5f5f5;
+    color: #0f1230;
     backdrop-filter: blur(28px);
     border-radius: 44px;
 }
 .form-group ::placeholder  {
   background: transparent;
-  color:#f5f5f5;
+  color:#0f1230;
   text-align: left;
   font-size: 16px;
 }
@@ -766,7 +857,7 @@ form section option, ::placeholder  {
     text-align: center;
     background: rgba(18, 21, 56, 1);
     box-shadow: rgb(255 255 255 / 12%) 2px 2px 5px inset;
-    color: #f5f5f5;
+    color: #0f1230;
   }
   .form-group label {
     border-radius: 44px;   
@@ -892,7 +983,7 @@ form section option, ::placeholder  {
     #btnOpenListedItem {
     float: right;
     position: fixed;
-    bottom: 35vh;
+    bottom: 40vh;
     right: 20px;
     text-align: center;
     border-radius: 44px;
